@@ -1,87 +1,103 @@
-*{
-	font-family: "Montserrat", sans-serif;
+/* Global Styles */
+* {
+    font-family: "Montserrat", sans-serif;
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
+
 body {
     background-color: #F7F7F7;
-    margin: 0;
+    display: flex;
+    flex-direction: column;
 }
 
-
-/* ==================================================== */
-
-/* Overlay ====================================================*/
+/* Overlay */
 #overlay {
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.596); /* Transparent black */
-    z-index: -1; /* Ensure it's below dropdown */
-    opacity: 0; /* Start as invisible */
-    pointer-events: none; /* Ignore clicks when not visible */
-    transition: opacity 0.5s ease; /* Smooth fade in and out */
+    background-color: rgba(0, 0, 0, 0.596);
+    z-index: 2;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
 }
 
 #overlay.active {
-    opacity: 1; /* Fully visible when active */
-    pointer-events: auto; /* Allow clicks when visible */
+    opacity: 1;
+    pointer-events: auto;
 }
-/* Overlay ====================================================*/
-
 
 /* Header */
-header{
+header {
     background-color: white;
     display: flex;
-    flex-direction: row;
-    padding: 10px 60px;
+    justify-content: space-between;
+    padding: 1vh 5vh;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.144);
     z-index: 5;
-    justify-content: space-between;
 }
 
-
-
-/* Logo */
-#LogoNavigate{
-    height: 45px; /* Adjust height as needed */
-    width: auto; /* Maintain aspect ratio */
-    
+#LogoNavigate {
+    height: 45px;
+    width: auto;
 }
-/* Logo */
 
-/* Animations Handler ======================================*/
-#Profile,#Login,#Signup,#Bookmark{
-    transition: transform 0.5s ease, background-color 0.3s ease;
+/* Animations */
+#Profile, #Login, #Signup, #Bookmark, .dropdown-content a, #Generate {
+    transition: transform 0.3s ease, background-color 0.3s ease;
 }
-/* Animations Handler ======================================*/
 
+#Signup:hover, #Generate:hover {
+    background-color: #ca4473;
+}
 
-
-
-/* Dropdown Profile ====================================== */
-
-#Profile{
+/* Dropdown Profile */
+#Profile {
     padding: 10px 20px;
     border-radius: 12px;
     font-size: medium;
     font-weight: bold;
-    align-items: center; 
-    line-height: 1.2; 
-    border: 1px solid white;
-    position: relative;
-    cursor: pointer;
     display: flex;
+    align-items: center;
+    line-height: 1.2;
+    border: 1px solid white;
+    cursor: pointer;
     background-color: white;
+    position: relative;
 }
 
+#Profile:hover {
+    background-color: #F0F2F2;
+    border-color: #F0F2F2;
+}
 
+#Profile i {
+    margin: 0 5px; 
+}
 
-/* Dropdown Content (hidden by default) */
+#Profile .fa-angle-up {
+    color: #F3548C;
+}
+
+#Bookmark {
+    color: #343A40;
+    padding: 10px;
+    border-radius: 50%;
+    border: 1px solid white;
+    margin-left: 20px;
+}
+
+#Bookmark:hover {
+    color: #F3548C;
+    background-color: #F0F2F2;
+    border-color: #F0F2F2;
+}
+
+/* Dropdown Content */
 .dropdown {
     position: relative;
     display: inline-block;
@@ -90,105 +106,64 @@ header{
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: white;
+    left: 0;
+    margin-top: 10px;
     min-width: 220px;
+    background-color: white;
     box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2);
     z-index: 2;
     border-radius: 12px;
     overflow: hidden;
-    margin-top: 10px;
-    left: 0px;
 }
 
-/* Dropdown content links */
 .dropdown-content a {
     color: #343A40;
     padding: 15px 20px;
+    margin: 10px;
     text-decoration: none;
     display: block;
-    margin: 10px;
     border-radius: 12px;
-    transition: background-color 0.5s ease;
     text-align: left;
 }
+
 .dropdown-content a:hover {
     background-color: #F0F2F2;
-    
 }
 
-/* Show the dropdown menu on click */
 .dropdown.show .dropdown-content {
     display: block;
-
 }
 
-/* Rotate the caret icon when dropdown is open */
 .dropdown.show #Profile i.fa-angle-up {
     transform: rotate(180deg);
-    
 }
 
-
-#Profile:hover{
-
-background-color: #F0F2F2;
-border: 1px solid #F0F2F2;
-}
-#Profile i {
-    margin: 0px 5px; 
-}
-
-#Profile .fa-angle-up{
-    color: #F3548C; 
-}
-
-#Bookmark{
-    padding: 7px 10px;
-    border-radius: 100%;
-    border: 1px solid white;
-
-}
-
-#Bookmark:hover{
-    color: #F3548C; 
-    background-color: #F0F2F2;
-    border: 1px solid #F0F2F2;
-}
-
-/* Dropdown Profile ====================================== */
-
-
-
-/* User Forms ======================================*/
-
-
-.User{
+/* User Forms */
+.User {
     display: flex;
     align-items: center;
-
 }
-.User a{
+
+.User a {
     text-decoration: none;
-    margin-left: 15px;
-    margin-right: 15px;
+    margin: 0 15px;
     font-size: 16px;
-    
 }
 
 #Login, #Signup {
-    padding: 7px 20px; 
+    padding: 7px 20px;
     border-radius: 12px;
     font-weight: bold;
-    align-items: center; 
-    line-height: 1.2; 
+    align-items: center;
+    line-height: 1.2;
 }
 
 #Login {
     border: 1px solid #343A40;
     color: #343A40;
-    
 }
-#Login:hover{
+
+#Login:hover {
     background-color: #F0F2F2;
 }
 
@@ -197,12 +172,70 @@ border: 1px solid #F0F2F2;
     background-color: #F3548C;
     color: white;
 }
-#Signup:hover{
-    background-color: #ca4473;
+
+/* Content */
+.Content, #page1 {
+    z-index: 1;
 }
 
+.Container {
+    height: 100vh;
+}
 
-/* User Forms ======================================*/
+#page1 {
+    height: 91.6vh;
+    background-color: #9b9b9b;
+}
 
-/* Header */
-/* ==================================================== */
+#pg1BG {
+    height: 100%;
+    background: url(Image/Image_1_a.png) center/cover no-repeat;
+    filter: blur(10px);
+    position: relative;
+    z-index: 0;
+}
+
+#ContentPage1 {
+    color: white;
+    position: absolute;
+    top: 52%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 2;
+    text-align: center;
+    width: 120vh;
+}
+
+#ContentPage1 p {
+    padding: 0 100px;
+    text-shadow: 2px 2px 2px #000;
+}
+
+#text {
+    font-weight: bolder;
+    font-family: "Futura", sans-serif;
+    font-size: 90px;
+    text-shadow: 5px 5px 5px #000;
+    margin-bottom: 10px;
+}
+
+#Generate {
+    padding: 20px;
+    border-radius: 12px;
+    font-size: 30px;
+    font-weight: bold;
+    align-items: center;
+    line-height: 1.2;
+    border: 1px solid white;
+    background-color: #F3548C;
+    color: white;
+    margin-top: 30px;
+    outline: none;
+    border-color: #ca4473;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.829);
+}
+
+/* Placeholder for #page2 */
+#page2 {
+    /* Add styles if needed */
+}
