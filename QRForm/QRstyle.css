@@ -320,7 +320,6 @@ section ul {
 }
 
 details {
-  background: #f1f1f1;
   margin: 2em -2em -2em;
   padding: 1.5em 2em;
 }
@@ -356,18 +355,18 @@ details .toggle-code svg {
   margin-right: 0.25em;
 }
 details .save {
-   display: inline-flex;
-   padding: 0.5em 1em;
-   border-radius: 5px;
-   font-size: 0.875rem;
-   background: #10b981;
-   color: #fff;
-   font-weight: 500;
-   -webkit-user-select: none;
-   -moz-user-select: none;
-    -ms-user-select: none;
-        user-select: none;
-   cursor: pointer;
+  display: inline-flex;
+  padding: 0.5em 1em;
+  border-radius: 5px;
+  font-size: 0.875rem;
+  background: #10b981;
+  color: #fff;
+  font-weight: 500;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  cursor: pointer;
 
  }
  details .save svg {
@@ -378,6 +377,15 @@ details .save {
  details .save:hover {
    background: #0ea271;
  }
+
+ .button-container {
+  display: flex;
+  flex-wrap: no-wrap;
+}
+
+.button-container details {
+  margin: 0;
+}
 
 details summary {
   outline: none;
@@ -390,4 +398,45 @@ details summary::marker {
 
 details summary::-webkit-details-marker {
   display: none;
+}
+
+#imgBox {
+    width: 200px; 
+    border-radius: 5px;
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 1s;
+}
+
+#imgBox img {
+    width: 100%;
+    padding: 10px;
+}
+
+#imgBox.show-img {
+    max-height: 300px;
+    margin: 10px;
+    border: 1px solid #d1d1d1;
+}
+
+.error {
+    animation: shake 0.1s linear 10;
+}
+
+@keyframes shake {
+    0% {
+        transform: translateX(0);
+    }
+    25% {
+        transform: translateX(-2px);
+    }
+    50% {
+        transform: translateX(0);
+    }
+    75% {
+        transform: translateX(2px);
+    }
+    100% {
+        transform: translateX(0);
+    }
 }

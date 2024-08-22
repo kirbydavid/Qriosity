@@ -6,19 +6,84 @@
         <link rel="stylesheet" href="QRstyle.css">
     </head>
     <body>
-        <h1>Informations about your product</h1>
-        <p>Please fill out this form with the required information</p>
-        <form>
-            <fieldset>
-              <label for="Item-name"> <input  placeholder="Item Name" class="qrText" type="text" required /></label>
-              <label for="Ingredients"> <input placeholder="Ingredients" class="qrText" type="text" required /></label>
-              <label for="Add-Info"> <input placeholder="Add-Info" class="qrText" type="text" required /></label>
-            </fieldset>
-            <button>Generate QR</button>
-            <div id="imgBox">
-                <img src="" id="qrImage">
-            </div>
-        </form>
-        <script src="QR.js"></script>
-    </body>
+      <div class="demo-page">
+         <main class="demo-page-content">
+           <section>
+             <div class="href-target" id="input-types"></div>
+             <h1>
+               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-align-justify">
+                 <line x1="21" y1="10" x2="3" y2="10" />
+                 <line x1="21" y1="6" x2="3" y2="6" />
+                 <line x1="21" y1="14" x2="3" y2="14" />
+                 <line x1="21" y1="18" x2="3" y2="18" />
+               </svg>
+               Information
+             </h1>
+             <p>Please enter informations about the product</p>
+       
+             <div class="nice-form-group">
+               <label>Product Name</label>
+               <input type="text" placeholder="Enter Product name" value="" class="qrText"/>
+             </div>
+       
+             <div class="nice-form-group">
+               <label>Description</label>
+               <input type="email" placeholder="Enter Description" value="" class="qrText"/>
+             </div>
+       
+             <div class="nice-form-group">
+               <label>Origin</label>
+               <input type="tel" placeholder="Place of Origin" value="" class="qrText"/>
+             </div>
+       
+             <div class="nice-form-group">
+               <label>Expiration Date</label>
+               <input type="url" placeholder="Enter Expiration date" value="" class="qrText"/>
+             </div>
+       
+             <div class="nice-form-group">
+               <label>Ingredients</label>
+               <input type="text" placeholder="Enter Ingredients" class="qrText"/>
+             </div>
+
+             <div class="nice-form-group">
+               <label>Allergen</label>
+               <input type="text" placeholder="Enter allergens" class="qrText"/>
+             </div>
+            <div class="button-container">
+             <details>
+               <summary>
+                <button onclick="generateQR()" class="toggle-code">
+                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-code">
+                     <polyline points="16 18 22 12 16 6" />
+                     <polyline points="8 6 2 12 8 18" />
+                   </svg>
+                   Generate
+                </button>
+               </summary>
+             </details>
+             <details>
+               <summary>
+                <button onclick="generateQR()" class="save">
+                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-code">
+                     <polyline points="16 18 22 12 16 6" />
+                     <polyline points="8 6 2 12 8 18" />
+                   </svg>
+                   Save
+                </button>
+               </summary>
+             </details>
+            </div> 
+           </section>
+         </main>
+         <div id="imgBox">
+            <img src="" id="qrImage">
+        </div>
+    </div>
+       </div>
+       <!-- partial -->
+
+      <script src="QR.js"></script>
+  </body>
+
 </html>
