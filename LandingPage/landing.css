@@ -11,7 +11,10 @@ body {
     display: flex;
     flex-direction: column;
 }
-
+a{
+    text-decoration: none;
+    color: white;
+}
 /* Overlay */
 #overlay {
     position: fixed;
