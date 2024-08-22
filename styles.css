@@ -114,6 +114,7 @@ header {
     z-index: 2;
     border-radius: 12px;
     overflow: hidden;
+    padding: 15px 0px;
 }
 
 .dropdown-content a {
