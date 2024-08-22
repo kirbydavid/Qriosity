@@ -1,4 +1,4 @@
-## AmbatuCode // Chooks to Code ### Entry for Eneda Student Hackathon
+## AmbatuCode // Chooks to Code - An Entry for Eneda Student Hackathon
 
 **QRiosity** <br>
 *Scan your QRIOSITIES away*
