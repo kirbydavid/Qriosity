@@ -11,10 +11,12 @@ body {
     display: flex;
     flex-direction: column;
 }
-a{
+
+a {
     text-decoration: none;
     color: white;
 }
+
 /* Overlay */
 #overlay {
     position: fixed;
@@ -39,7 +41,7 @@ header {
     background-color: white;
     display: flex;
     justify-content: space-between;
-    padding: 1vh 5vh;
+    padding: 2vh 5vh;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.144);
     z-index: 5;
 }
@@ -79,7 +81,7 @@ header {
 }
 
 #Profile i {
-    margin: 0 5px; 
+    margin: 0 5px;
 }
 
 #Profile .fa-angle-up {
@@ -185,9 +187,9 @@ header {
 .Container {
     height: 100vh;
     display: flex;
-    justify-content: center; /* Centers the content horizontally */
-    align-items: center; /* Centers the content vertically */
-    flex-direction: column; /* Ensures the content stacks vertically */
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column;
 }
 
 #page1 {
@@ -252,4 +254,98 @@ header {
     display: flex;
     justify-content: center; /* Centers the text horizontally */
     align-items: center; /* Centers the text vertically */
+}
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    #text {
+        font-size: 70px;
+    }
+
+    #ContentPage1 p {
+        padding: 0 5vh;
+    }
+}
+
+@media (max-width: 992px) {
+    header {
+        flex-direction: column;
+        align-items: center;
+        padding: 2vh 2vh;
+    }
+
+    #LogoNavigate {
+        margin-bottom: 15px;
+    }
+
+    #text {
+        font-size: 60px;
+    }
+
+    #ContentPage1 p {
+        padding: 0 3vh;
+    }
+
+    #Generate {
+        font-size: 25px;
+        padding: 15px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 2vh 1vh;
+    }
+
+    #Profile, #Login, #Signup {
+        font-size: 14px;
+        padding: 5px 15px;
+    }
+
+    #Bookmark {
+        padding: 8px;
+        margin-left: 15px;
+    }
+
+    #text {
+        font-size: 50px;
+    }
+
+    #ContentPage1 p {
+        padding: 0 2vh;
+    }
+
+    #Generate {
+        font-size: 22px;
+        padding: 12px;
+    }
+}
+
+@media (max-width: 576px) {
+    header {
+        padding: 2vh 1vh;
+    }
+
+    #Profile, #Login, #Signup {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+
+    #Bookmark {
+        padding: 7px;
+        margin-left: 10px;
+    }
+
+    #text {
+        font-size: 40px;
+    }
+
+    #ContentPage1 p {
+        padding: 0 1vh;
+    }
+
+    #Generate {
+        font-size: 20px;
+        padding: 10px;
+    }
 }

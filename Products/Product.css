@@ -39,6 +39,7 @@ header {
     padding: 1vh 5vh;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.144);
     z-index: 5;
+    flex-wrap: wrap; /* Ensure items wrap on smaller screens */
 }
 
 #LogoNavigate {
@@ -47,11 +48,11 @@ header {
 }
 
 /* Animations */
-#Profile, #Login, #Signup, #Bookmark, .dropdown-content a, #Generate,.child-row,#CreateProduct {
+#Profile, #Login, #Signup, #Bookmark, .dropdown-content a, #Generate, .child-row, #CreateProduct {
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-#Signup:hover, #Generate:hover,#CreateProduct:hover {
+#Signup:hover, #Generate:hover, #CreateProduct:hover {
     background-color: #c74975;
 }
 
@@ -68,18 +69,16 @@ header {
     cursor: pointer;
     background-color: white;
     position: relative;
-
 }
+
 #Profile i {
     pointer-events: none; /* Prevents icons from capturing the click events */
+    margin: 0 5px;
 }
+
 #Profile:hover {
     background-color: #F0F2F2;
     border-color: #F0F2F2;
-}
-
-#Profile i {
-    margin: 0 5px; 
 }
 
 #Profile .fa-angle-up {
@@ -113,11 +112,11 @@ header {
     margin-top: 10px;
     min-width: 220px;
     background-color: white;
-    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
     z-index: 2;
     border-radius: 12px;
     overflow: hidden;
-    padding: 15px 0px;
+    padding: 15px 0;
 }
 
 .dropdown-content a {
@@ -146,6 +145,7 @@ header {
 .User {
     display: flex;
     align-items: center;
+    flex-wrap: wrap; /* Ensure items wrap on smaller screens */
 }
 
 .User a {
@@ -179,16 +179,16 @@ header {
 
 /* Content */
 
-/* DASHBOARD CONTAINER */
+/* Dashboard Container */
 .Container {
     display: flex;
     flex-direction: column;
     margin: 40px 20px;
-    padding: 20px 20px;
+    padding: 20px;
     height: 80vh;
     border-radius: 10px;
     background-color: white;
-    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
 }
 
 /* Dashboard Styles */
@@ -204,26 +204,30 @@ header {
     display: flex;
     flex-direction: row;
     padding: 10px;
-    align-items: center; /* Aligns content vertically */
+    flex-wrap: nowrap; /* Prevent wrapping of children */
 }
 
 #headerProduct .name, #headerProduct .last-updated {
-    flex: 0.184;
+    flex: 0.46; /* Flex grow to ensure proper alignment */
 }
 
 /* Child Row Styles */
 .child-row {
+    
     background-color: white;
     color: #333;
     display: flex;
     flex-direction: row;
     padding: 10px;
     border-bottom: 1px solid #ddd;
-    align-items: center; /* Aligns content vertically */
+    align-items: center;
+    flex-wrap: nowrap; /* Prevent wrapping of children */
+    justify-content: space-between; /* Distribute space between children */
 }
 
 .child-row .name, .child-row .last-updated {
-    flex: 0.2;
+    flex: 1; /* Ensure items align horizontally */
+    margin-right: 10px; /* Space between items */
 }
 
 .child-row .actions {
@@ -246,11 +250,11 @@ header {
     background-color: #ececec;
 }
 
-.fa-plus{
+.fa-plus {
     color: white;
 }
 
-#CreateProduct{
+#CreateProduct {
     align-items: center;
     position: absolute;
     bottom: 70px;
@@ -262,15 +266,15 @@ header {
     border: none;
     border-radius: 50%;
     cursor: pointer;
-    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.452)
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.452);
 }
+
 #CreateProduct i {
     pointer-events: none;
     transition: transform 0.3s ease;
 }
 
 .button-text {
-
     color: #F3548C;
     font-weight: bold;
     font-size: medium;
@@ -285,4 +289,119 @@ header {
 #CreateProduct:hover .button-text {
     opacity: 1; /* Show text on hover */
     transform: translateX(0); /* Slide text into view */
+}
+
+
+/* Responsive Styles */
+@media (max-width: 1200px) {
+    
+
+    #headerProduct {
+        font-size: 14px;
+    }
+
+    #CreateProduct {
+        bottom: 60px;
+        right: 30px;
+        min-height: 35px;
+        min-width: 35px;
+    }
+    .child-row {
+        padding: 8px;
+        font-size: 14px;
+    }
+    .button-text {
+        font-size: 14px;
+        right: 40px;
+    }
+}
+
+@media (max-width: 992px) {
+  
+    #headerProduct {
+        font-size: 12px;
+        padding: 8px;
+    }
+
+    .child-row {
+        padding: 8px;
+        font-size: 12px;
+    }
+
+    #CreateProduct {
+        bottom: 50px;
+        right: 20px;
+        min-height: 30px;
+        min-width: 30px;
+    }
+
+    .button-text {
+        font-size: 12px;
+        right: 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    header {
+        padding: 1vh 1vh;
+    }
+
+    #LogoNavigate {
+        height: 30px;
+    }
+
+    #headerProduct {
+        font-size: 10px;
+        padding: 6px;
+    }
+
+    .child-row {
+        padding: 6px;
+        font-size: 10px;
+
+    }
+
+    #CreateProduct {
+        bottom: 40px;
+        right: 10px;
+        min-height: 25px;
+        min-width: 25px;
+    }
+
+    .button-text {
+        font-size: 10px;
+        right: 20px;
+    }
+}
+
+@media (max-width: 576px) {
+    header {
+        padding: 1vh 0.5vh;
+    }
+
+    #LogoNavigate {
+        height: 25px;
+    }
+
+    #headerProduct {
+        font-size: 8px;
+        padding: 4px;
+    }
+
+    .child-row {
+        padding: 4px;
+        font-size: 8px;
+    }
+
+    #CreateProduct {
+        bottom: 30px;
+        right: 5px;
+        min-height: 20px;
+        min-width: 20px;
+    }
+
+    .button-text {
+        font-size: 8px;
+        right: 10px;
+    }
 }
