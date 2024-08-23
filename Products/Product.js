@@ -19,3 +19,7 @@ window.addEventListener('click', function(event) {
         document.getElementById('overlay').classList.remove('active'); // Hide overlay
     }
 });
+
+document.getElementById("CreateProduct").addEventListener("click", function() {
+    window.location.href = "../QRForm/QRform.html"; // Replace with the actual path
+  });
