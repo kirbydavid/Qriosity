@@ -11,10 +11,12 @@ body {
     display: flex;
     flex-direction: column;
 }
-a{
+
+a {
     text-decoration: none;
     color: white;
 }
+
 /* Overlay */
 #overlay {
     position: fixed;
@@ -39,7 +41,7 @@ header {
     background-color: white;
     display: flex;
     justify-content: space-between;
-    padding: 1vh 5vh;
+    padding: 2vh 5vh;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.144);
     z-index: 5;
 }
@@ -79,7 +81,7 @@ header {
 }
 
 #Profile i {
-    margin: 0 5px; 
+    margin: 0 5px;
 }
 
 #Profile .fa-angle-up {
@@ -185,9 +187,9 @@ header {
 .Container {
     height: 100vh;
     display: flex;
-    justify-content: center; /* Centers the content horizontally */
-    align-items: center; /* Centers the content vertically */
-    flex-direction: column; /* Ensures the content stacks vertically */
+    justify-content: center; 
+    align-items: center; 
+    flex-direction: column;
 }
 
 #page1 {
