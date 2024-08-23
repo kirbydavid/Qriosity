@@ -20,3 +20,23 @@
             }
         });
   
+        // Show the login form
+document.getElementById('Login').addEventListener('click', function() {
+   document.getElementById('popupContainer').classList.add('active');
+   document.getElementById('overlay').classList.add('active');
+});
+
+// Close the login form
+document.getElementById('closeBtn').addEventListener('click', function() {
+   document.getElementById('popupContainer').classList.remove('active');
+   document.getElementById('overlay').classList.remove('active');
+});
+
+// Close when clicking outside the popup
+window.addEventListener('click', function(event) {
+   if (event.target === document.getElementById('overlay')) {
+       document.getElementById('popupContainer').classList.remove('active');
+       document.getElementById('overlay').classList.remove('active');
+   }
+});
+
