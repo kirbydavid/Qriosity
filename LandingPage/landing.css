@@ -218,7 +218,7 @@ header {
     z-index: 2;
     text-align: center;
     max-width: 120vh;
-    padding: 0 0px;
+    padding: 0 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -252,17 +252,15 @@ header {
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.829);
     cursor: pointer;
     display: flex;
-    justify-content: center; /* Centers the text horizontally */
-    align-items: center; /* Centers the text vertically */
+    justify-content: center; 
+    align-items: center; 
 }
 
 
 /* Popup and overlay styles */
 .popupContainer {
    position: fixed;
-   top: 50%;
    left: 50%;
-   transform: translate(-50%, -50%);
    z-index: 1000;
    display: none;
    width: 768px;
@@ -369,20 +367,22 @@ input {
 }
 /* Container */
 .popupContainer {
-   background-color: #fff; 
+    background-color: #fff; 
 	border-radius: 10px;
   	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
-			0 10px 10px rgba(0,0,0,0.22);
+			    0 10px 10px rgba(0,0,0,0.22);
 	position: relative;
 	overflow: hidden;
 	width: 768px;
 	max-width: 100%;
 	min-height: 480px;
-   position: relative; 
-   z-index: 1000; /* Set a base z-index for the popup */
+    position: relative; 
+    z-index: 1000; /* Set a base z-index for the popup */
 }
 
 .popupContainer.active {
+   left: 50%;
+   transform: translate(-50%, -115%);
    display: block; /* Show when active */
 }
 /* Optional: Add a backdrop for the popup */
@@ -540,11 +540,11 @@ input {
    opacity: 0.7; /* Add hover effect if needed */
 }
 
-/* Responsive Styles */
-@media (max-width: 1200px) {
-   #text {
-       font-size: 70px;
-   }
+/* Media Queries */
+@media screen and (max-width: 1200px) {
+    #text {
+        font-size: 70px;
+    }
 
    #ContentPage1 p {
        padding: 0 5vh;
@@ -552,23 +552,23 @@ input {
 }
 
 @media (max-width: 992px) {
-   header {
-       flex-direction: column;
-       align-items: center;
-       padding: 2vh 2vh;
-   }
+    header {
+        flex-direction: column;
+        align-items: center;
+        padding: 2vh 2vh;
+    }
 
-   #LogoNavigate {
-       margin-bottom: 15px;
-   }
+    #LogoNavigate {
+        margin-bottom: 15px;
+    }
 
    #text {
        font-size: 60px;
    }
 
-   #ContentPage1 p {
-       padding: 0 3vh;
-   }
+    #ContentPage1 p {
+        padding: 0 3vh;
+    }
 
    #Generate {
        font-size: 25px;
@@ -577,58 +577,59 @@ input {
 }
 
 @media (max-width: 768px) {
-   header {
-       padding: 2vh 1vh;
-   }
+    header {
+        padding: 2vh 1vh;
+    }
 
-   #Profile, #Login, #Signup {
-       font-size: 14px;
-       padding: 5px 15px;
-   }
+    #Profile, #Login, #Signup {
+        font-size: 14px;
+        padding: 5px 15px;
+    }
 
-   #Bookmark {
-       padding: 8px;
-       margin-left: 15px;
-   }
+    #Bookmark {
+        padding: 8px;
+        margin-left: 15px;
+    }
 
    #text {
        font-size: 50px;
    }
 
-   #ContentPage1 p {
-       padding: 0 2vh;
-   }
+    #ContentPage1 p {
+        padding: 0 2vh;
+    }
 
-   #Generate {
-       font-size: 22px;
-       padding: 12px;
-   }
+    #Generate {
+        font-size: 22px;
+        padding: 12px;
+    }
 }
 
 @media (max-width: 576px) {
-   header {
-       padding: 2vh 1vh;
-   }
+    header {
+        padding: 2vh 1vh;
+    }
 
-   #Profile, #Login, #Signup {
-       font-size: 12px;
-       padding: 5px 10px;
-   }
+    #Profile, #Login, #Signup {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
 
-   #Bookmark {
-       padding: 7px;
-       margin-left: 10px;
-   }
+    #Bookmark {
+        padding: 7px;
+        margin-left: 10px;
+    }
 
-   #text {
-       font-size: 40px;
-   }
+    #text {
+        font-size: 40px;
+    }
 
-   #ContentPage1 p {
-       padding: 0 1vh;
-   }
+    #ContentPage1 p {
+        padding: 0 1vh;
+    }
 
-   #Generate {
-       font-size: 20px;
-       padding: 10px;
-   }
+    #Generate {
+        font-size: 20px;
+        padding: 10px;
+    }
+}

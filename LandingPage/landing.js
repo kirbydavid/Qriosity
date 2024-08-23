@@ -1,3 +1,20 @@
+        // Trigger pop-up when "Log in" is clicked
+        document.getElementById('Login').addEventListener('click', function(event) {
+            event.preventDefault();
+            document.getElementById('popupContainer').classList.add('active');
+            document.getElementById('overlay').classList.add('active');
+        });
+
+        // Close pop-up when close button or overlay is clicked
+        document.getElementById('closeBtn').addEventListener('click', function() {
+            document.getElementById('popupContainer').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+        });
+
+        document.getElementById('overlay').addEventListener('click', function() {
+            document.getElementById('popupContainer').classList.remove('active');
+            document.getElementById('overlay').classList.remove('active');
+        });
 
         document.getElementById('Profile').addEventListener('click', function(event) {
             event.preventDefault(); // Prevent default link behavior
@@ -19,7 +36,6 @@
                 document.getElementById('overlay').classList.remove('active'); // Hide overlay
             }
         });
-  
         // Show the login form
 document.getElementById('Login').addEventListener('click', function() {
    document.getElementById('popupContainer').classList.add('active');
