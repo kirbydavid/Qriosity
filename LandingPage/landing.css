@@ -17,8 +17,8 @@ a {
     color: white;
 }
 
-/* Overlay */
-#overlay {
+/* main */
+#main {
     position: fixed;
     top: 0;
     left: 0;
@@ -31,7 +31,7 @@ a {
     transition: opacity 0.5s ease;
 }
 
-#overlay.active {
+#main.active {
     opacity: 1;
     pointer-events: auto;
 }
@@ -41,7 +41,7 @@ header {
     background-color: white;
     display: flex;
     justify-content: space-between;
-    padding: 2vh 5vh;
+    padding: 0vh 5vh;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.144);
     z-index: 5;
 }
@@ -260,6 +260,7 @@ header {
 /* Popup and overlay styles */
 .popupContainer {
    position: fixed;
+   top: 50%;
    left: 50%;
    z-index: 1000;
    display: none;
@@ -367,11 +368,11 @@ input {
 }
 /* Container */
 .popupContainer {
+    height: 300px;
     background-color: #fff; 
 	border-radius: 10px;
   	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
 			    0 10px 10px rgba(0,0,0,0.22);
-	position: relative;
 	overflow: hidden;
 	width: 768px;
 	max-width: 100%;
@@ -381,24 +382,24 @@ input {
 }
 
 .popupContainer.active {
-   left: 50%;
-   transform: translate(-50%, -115%);
-   display: block; /* Show when active */
+    height: 50%;
+    transform: translate(-50%, -115%);
+    display: block; /* Show when active */
 }
 /* Optional: Add a backdrop for the popup */
 .popupBackdrop {
-   display: none;
-   position: fixed;
-   top: 0;
-   left: 0;
-   width: 100%;
-   height: 100%;
-   background-color: rgba(0, 0, 0, 0.5);
-   z-index: 999;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 999;
 }
 
 .popupBackdrop.active {
-   display: block; /* Show when active */
+    display: block; /* Show when active */
 }
 .form-container {
 	position: absolute;
@@ -476,6 +477,15 @@ input {
 
 .popupContainer.right-panel-active .overlay {
   	transform: translateX(50%);
+}
+
+@keyframes overlaySlide {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(50%);
+    }
 }
 
 .overlay-panel {
