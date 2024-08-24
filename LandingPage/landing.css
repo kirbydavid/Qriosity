@@ -12,13 +12,8 @@ body {
     flex-direction: column;
 }
 
-a {
-    text-decoration: none;
-    color: white;
-}
-
-/* main */
-#main {
+/* Overlay */
+#overlay {
     position: fixed;
     top: 0;
     left: 0;
@@ -31,7 +26,7 @@ a {
     transition: opacity 0.5s ease;
 }
 
-#main.active {
+#overlay.active {
     opacity: 1;
     pointer-events: auto;
 }
@@ -41,9 +36,13 @@ header {
     background-color: white;
     display: flex;
     justify-content: space-between;
-    padding: 0vh 5vh;
+    padding: 1vh 5vh;
+    min-height: 70px;
+    max-height: 70px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.144);
     z-index: 5;
+    flex-wrap: wrap; /* Ensure items wrap on smaller screens */
+
 }
 
 #LogoNavigate {
@@ -52,11 +51,11 @@ header {
 }
 
 /* Animations */
-#Profile, #Login, #Signup, #Bookmark, .dropdown-content a, #Generate {
+#Profile, #Login, #Signup, #Bookmark, .dropdown-content a, #Generate, .child-row, #CreateProduct {
     transition: transform 0.3s ease, background-color 0.3s ease;
 }
 
-#Signup:hover, #Generate:hover {
+#Signup:hover, #Generate:hover, #CreateProduct:hover {
     background-color: #c74975;
 }
 
@@ -75,13 +74,14 @@ header {
     position: relative;
 }
 
+#Profile i {
+    pointer-events: none; /* Prevents icons from capturing the click events */
+    margin: 0 5px;
+}
+
 #Profile:hover {
     background-color: #F0F2F2;
     border-color: #F0F2F2;
-}
-
-#Profile i {
-    margin: 0 5px;
 }
 
 #Profile .fa-angle-up {
@@ -115,11 +115,11 @@ header {
     margin-top: 10px;
     min-width: 220px;
     background-color: white;
-    box-shadow: 0px 0px 16px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 16px rgba(0, 0, 0, 0.2);
     z-index: 2;
     border-radius: 12px;
     overflow: hidden;
-    padding: 15px 0px;
+    padding: 15px 0;
 }
 
 .dropdown-content a {
@@ -148,6 +148,7 @@ header {
 .User {
     display: flex;
     align-items: center;
+    flex-wrap: wrap; /* Ensure items wrap on smaller screens */
 }
 
 .User a {
@@ -181,11 +182,11 @@ header {
 
 /* Content */
 .Content, #page1 {
-    z-index: 1;
+    z-index: 0;
 }
 
 .Container {
-    height: 100vh;
+    z-index: 2;
     display: flex;
     justify-content: center; 
     align-items: center; 
@@ -193,7 +194,8 @@ header {
 }
 
 #page1 {
-    height: 91.6vh;
+    z-index: 0;
+    height: 90.6vh;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -258,21 +260,9 @@ header {
 
 
 /* Popup and overlay styles */
-.popupContainer {
-   position: fixed;
-   top: 50%;
-   left: 50%;
-   z-index: 1000;
-   display: none;
-   width: 768px;
-   background-color: white;
-   box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-   border-radius: 12px;
-}
 
-.popupContainer.active {
-   display: block;
-}
+
+
 
 #overlay {
    position: fixed;
@@ -315,7 +305,7 @@ span {
 	font-size: 12px;
 }
 /* Icons */
-a {
+.popupContainer a {
 	color: #000000;
 	font-size: 14px;
 	text-decoration: none;
@@ -368,39 +358,30 @@ input {
 }
 /* Container */
 .popupContainer {
+    display: none; /* Hidden initially */
+    position: absolute;
     height: 300px;
-    background-color: #fff; 
-	border-radius: 10px;
-  	box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
-			    0 10px 10px rgba(0,0,0,0.22);
-	overflow: hidden;
-	width: 768px;
-	max-width: 100%;
-	min-height: 480px;
-    position: relative; 
-    z-index: 1000; /* Set a base z-index for the popup */
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 14px 28px rgba(0,0,0,0.25), 
+                0 10px 10px rgba(0,0,0,0.22);
+    overflow: hidden;
+    width: 768px;
+    max-width: 100%;
+    min-height: 480px;
+    z-index: 1000000000;
+    transform: translate(-50%, -50%);
+    top: 50%;
+    left: 50%;
 }
+
 
 .popupContainer.active {
-    height: 50%;
-    transform: translate(-50%, -115%);
-    display: block; /* Show when active */
-}
-/* Optional: Add a backdrop for the popup */
-.popupBackdrop {
-    display: none;
+    z-index: 1000000000;
     position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 999;
+   display: block;
 }
 
-.popupBackdrop.active {
-    display: block; /* Show when active */
-}
 .form-container {
 	position: absolute;
 	top: 0;
@@ -422,7 +403,7 @@ input {
 	left: 0;
 	width: 50%;
 	opacity: 0;
-	z-index: 1;
+	z-index: 2;
 }
 
 .popupContainer.right-panel-active .sign-up-container {
@@ -474,6 +455,7 @@ input {
   	transform: translateX(0);
 	transition: transform 0.6s ease-in-out;
 }
+
 
 .popupContainer.right-panel-active .overlay {
   	transform: translateX(50%);
@@ -551,116 +533,29 @@ input {
 }
 
 /* Media Queries */
-@media screen and (max-width: 1200px) {
-    #text {
-        font-size: 70px;
-    }
+/* Responsive Styles */
 
-    #ContentPage1 p {
-        padding: 0 5vh;
-    }
-}
 
-@media screen and (max-width: 992px) {
+
+@media (max-width: 768px) {
     header {
-        padding: 1vh 3vh;
-    }
-
-    #LogoNavigate {
-        height: 40px;
-    }
-
-    #text {
-        font-size: 60px;
-    }
-
-    #ContentPage1 p {
-        padding: 0 4vh;
-    }
-
-    #Profile {
-        padding: 8px 15px;
-        font-size: small;
-    }
-
-    #Bookmark {
-        margin-left: 15px;
-    }
-
-    #Generate {
-        font-size: 25px;
-        padding: 15px;
-    }
-}
-
-@media screen and (max-width: 768px) {
-    header {
-        padding: 1vh 2vh;
-    }
-
-    #LogoNavigate {
-        height: 35px;
-    }
-
-    #text {
-        font-size: 50px;
-    }
-
-    #ContentPage1 p {
-        padding: 0 3vh;
-    }
-
-    #Profile {
-        padding: 7px 10px;
-        font-size: small;
-    }
-
-    #Bookmark {
-        margin-left: 10px;
-    }
-
-    #Generate {
-        font-size: 20px;
-        padding: 12px;
-    }
-}
-
-@media screen and (max-width: 576px) {
-    header {
-        flex-direction: column;
-        align-items: center;
-        padding: 1vh;
+        padding: 1vh 1vh;
     }
 
     #LogoNavigate {
         height: 30px;
-        margin-bottom: 10px;
     }
 
-    #Profile {
-        padding: 5px 8px;
-        font-size: x-small;
+
+}
+
+@media (max-width: 576px) {
+    header {
+        padding: 1vh 0.5vh;
     }
 
-    #Bookmark {
-        margin-left: 8px;
+    #LogoNavigate {
+        height: 25px;
     }
 
-    #ContentPage1 p {
-        padding: 0 2vh;
-    }
-
-    #text {
-        font-size: 40px;
-    }
-
-    #Generate {
-        font-size: 18px;
-        padding: 10px;
-    }
-
-    .User {
-        flex-direction: column;
-        gap: 10px;
-    }
 }

@@ -40,19 +40,24 @@
         // Trigger pop-up when "Log in" is clicked
         document.getElementById('Login').addEventListener('click', function(event) {
             event.preventDefault();
+        
+            // Activate the popup container and the background overlay
+           
             document.getElementById('popupContainer').classList.add('active');
-            document.getElementById('overlay').classList.add('active');
+            
+        
+            // Optionally toggle the dropdown menu if needed
+            const dropdown = this.parentElement;
+            dropdown.classList.toggle('show');
         });
 
         // Close pop-up when close button or overlay is clicked
         document.getElementById('closeBtn').addEventListener('click', function() {
             document.getElementById('popupContainer').classList.remove('active');
-            document.getElementById('overlay').classList.remove('active');
         });
 
         document.getElementById('overlay').addEventListener('click', function() {
             document.getElementById('popupContainer').classList.remove('active');
-            document.getElementById('overlay').classList.remove('active');
         });
 
         document.getElementById('Profile').addEventListener('click', function(event) {

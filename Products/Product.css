@@ -37,6 +37,8 @@ header {
     display: flex;
     justify-content: space-between;
     padding: 1vh 5vh;
+    min-height: 70px;
+    max-height: 70px;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.144);
     z-index: 5;
     flex-wrap: wrap; /* Ensure items wrap on smaller screens */
