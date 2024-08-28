@@ -77,3 +77,7 @@ table td {
    font-size: 10px;
    margin-top: 10px;
 }
+
+.boldLabel {
+   font-weight: bold;
+}
