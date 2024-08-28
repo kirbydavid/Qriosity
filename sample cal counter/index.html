@@ -3,31 +3,113 @@
     <title>Sample Fetch</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="table.css">
 </head>
 <body>
-    <h1>food</h1>
-    <table class="table-hover">
-        <thead>
-            <tr>
-                <th>"food_name": </th>
-                <th>"brand_name": </th>
-                <th>"serving_qty": </th>
-                <th> "serving_unit":</th>
-                <th> "serving_weight_grams": </th>
-                <th>"nf_calories": </th>
-                <th>"nf_total_fat":</th>
-                <th>"nf_saturated_fat":</th>
-                <th>"nf_cholesterol":</th>
-                <th>"nf_sodium": </th>
-                <th>"nf_total_carbohydrate": </th>
-                <th>"nf_dietary_fiber":</th>
-                <th>"nf_sugars": th>
-                <th>"nf_protein": </th>
-                <th>"nf_potassium":</th>
-                <th>"nf_p": </th>
-            </tr>
-        </thead>
-        <tbody id="table-rows"></tbody>
-    </table>
+<div class="nutrition-facts">
+   <div class="header thick-line">
+   <h1>Nutrition Facts</h1>
+   <div class="calories thick-line">
+   <p>Amount Per Serving</p>
+   <span class="calories-label">Calories</span>
+   <span class="calories-value" id="calories">0</span>
+</div>
+</div>
+<div class="daily-value thick-line">
+   <p>% Daily Value*</p>
+   </div>
+   <table>
+   <tr class="thin-line">
+   <td>Total Fat</td>
+   <td id="total-fat">0g</td>
+   <td class="align-right" id="total-fat-dv">0%</td>
+</tr>
+   <tr class="indent">
+   <td>Saturated Fat</td>
+   <td id="saturated-fat">0g</td>
+   <td class="align-right" id="saturated-fat-dv">0%</td>
+</tr>
+   <tr class="indent thin-line">
+   <td>Trans Fat</td>
+   <td id="trans-fat">0g</td>
+   <td></td>
+</tr>
+   <tr class="indent">
+   <td>Polyunsaturated Fat</td>
+   <td id="poly-fat">0g</td>
+   <td></td>
+</tr>
+   <tr class="indent thin-line">
+   <td>Monounsaturated Fat</td>
+   <td id="mono-fat">0g</td>
+   <td></td>
+</tr>
+   <tr class="thin-line">
+   <td>Cholesterol</td>
+   <td id="cholesterol">0mg</td>
+   <td class="align-right" id="cholesterol-dv">0%</td>
+</tr>
+   <tr class="thin-line">
+   <td>Sodium</td>
+   <td id="sodium">0mg</td>
+   <td class="align-right" id="sodium-dv">0%</td>
+</tr>
+   <tr class="thin-line">
+   <td>Total Carbohydrates</td>
+   <td id="carbs">0g</td>
+   <td class="align-right" id="carbs-dv">0%</td>
+</tr>
+   <tr class="indent thin-line">
+   <td>Dietary Fiber</td>
+   <td id="fiber">0g</td>
+   <td class="align-right" id="fiber-dv">0%</td>
+</tr>
+   <tr class="indent">
+   <td>Sugars</td>
+   <td id="sugars">0g</td>
+   <td></td>
+</tr>
+   <tr class="thin-line">
+   <td>Protein</td>
+   <td id="protein">0g</td>
+<td></td>
+</tr>
+   <tr class="thick-line">
+   <td>Vitamin D</td>
+   <td id="vitamin-d">0mcg</td>
+   <td class="align-right" id="vitamin-d-dv">0%</td>             
+</tr>
+   <tr class="thin-line">
+   <td>Calcium</td>
+   <td id="calcium">0mg</td>
+   <td class="align-right" id="calcium-dv">0%</td>               
+</tr>
+   <tr class="thin-line">
+   <td>Iron</td>
+   <td id="iron">0mg</td>
+   <td class="align-right" id="iron-dv">0%</td>           
+</tr>
+   <tr class="thin-line">
+   <td>Potassium</td>
+   <td id="potassium">0mg</td>
+   <td class="align-right" id="potassium-dv">0%</td>         
+</tr>
+</table>
+   <div class="caffeine thick-line">
+   <table>
+   <tr>
+   <td>Caffeine</td>
+   <td id="caffeine">0mg</td>
+   <td class= "align-right" id="caffeine-dv"></td>
+</tr>
+</table>
+</div>
+   <div class = "disclaimer thick-line">
+   <p class="disclaimer">
+      *The % Daily Value (DV) tells you how much a nutrient in a serving of food contributes to a daily diet. 2000 calories a day is used for general nutrition advice.
+   </p>
+</div>
+</div>
     <script src="fetch.js"> </script>
 </body>
+</html>
