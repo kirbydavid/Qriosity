@@ -1,35 +1,49 @@
-let imgBox = document.getElementById("imgBox");
-let qrImage = document.getElementById("qrImage");
-let qrTextInputs = document.querySelectorAll(".qrText");
-let form = document.querySelector("form");
+function addIngredient() {
+  // Get input values from the modal
 
-form.addEventListener("submit", (e) => {
-  e.preventDefault();
-  generateQR();
-});
+  // Create a new row and cells
+  const tableBody = document.getElementById("ingredientsList");
+  const newRow = document.createElement("tr");
+  const ingredientInput = document.getElementById("ingredientInputBox").value;
 
-function generateQR(){
-    console.log("generateQR function called");
-    let qrText = "";
-    qrTextInputs.forEach(input => {
-        if(input.value.length > 0){
-            qrText += input.value + "\n";
-        } else {
-            input.classList.add('error');
-            setTimeout(()=>{
-                input.classList.remove('error');
-            }, 1000)
-            console.log("Error: input field is empty");
-            return;
-        }
-    });
-    if(qrText.length > 0){
-        console.log("QR text:", qrText);
-        let qrImageUrl = "https://api.qrserver.com/v1/create-qr-code/?size=150x150&data=" + encodeURIComponent(qrText);
-        console.log("QR image URL:", qrImageUrl);
-        qrImage.src = qrImageUrl;
-        imgBox.classList.add("show-img");
-    } else {
-        console.log("Error: no QR text");
-    }
+  newRow.innerHTML = `
+      <td>IMAGE</td>
+      <td>Name</td>
+      <td>Quantity</td>
+      <td>Weight</td>
+      <td>Unit</td>
+      <td>Calories</td>
+      <td>Food Group</td>
+      <td><button class="remove-btn" onclick="deleteRow(this)"><i class="fa-solid fa-trash"></i></button></td>
+      `;
+
+  // Append the new row to the table body
+  tableBody.appendChild(newRow);
+
+  // Show the table if it's currently hidden
+  const ingredientsTable = document.getElementById("ingredientsTable");
+  if (tableBody.rows.length > 0) {
+    ingredientsTable.style.display = "table";
+  }
 }
+
+// Hide the table if there are no rows
+function checkTableVisibility() {
+  const tableBody = document.getElementById("ingredientsList");
+  const ingredientsTable = document.getElementById("ingredientsTable");
+  if (tableBody.rows.length === 0) {
+    ingredientsTable.style.display = "none";
+  }
+}
+
+// Function to delete a row
+function deleteRow(button) {
+  const row = button.parentNode.parentNode; // Get the row
+  row.parentNode.removeChild(row); // Remove the row from the table body
+
+  // Hide the table if there are no rows
+  checkTableVisibility();
+}
+
+// Run this function initially to check if the table should be hidden
+checkTableVisibility();
