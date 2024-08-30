@@ -12,8 +12,11 @@ function addIngredient() {
   newRow.insertCell().textContent = ''; // Unit
   newRow.insertCell().textContent = ''; // Calories
   newRow.insertCell().textContent = ''; // Food Group
+
   const deleteButtonCell = newRow.insertCell();
   deleteButtonCell.innerHTML = '<button class="remove-btn" onclick="deleteRow(this)"><i class="fa-solid fa-trash"></i></button>';
+
+  
 
   // Fetch nutrition data for the added ingredient
   fetch('https://trackapi.nutritionix.com/v2/natural/nutrients', {
@@ -55,4 +58,16 @@ function addIngredient() {
 
   // Clear the input field
   document.getElementById("ingredientInputBox").value = "";
+}
+
+function deleteRow(button) {
+  const row = button.parentNode.parentNode; // Get the row
+  row.parentNode.removeChild(row); // Remove the row from the table body
+
+  // Check if there are no rows left
+  const tableBody = document.getElementById("ingredientsList");
+  if (tableBody.rows.length === 0) {
+    const ingredientsTable = document.getElementById("ingredientsTable");
+    ingredientsTable.style.display = "none";
+  }
 }
