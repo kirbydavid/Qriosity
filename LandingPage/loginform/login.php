@@ -1,3 +1,24 @@
+<?php
+    include('dbconnection.php'); // Adjust the path to your actual dbconnection file
+
+    if (isset($_POST['submit'])) {
+        $username = $_POST['username'];
+        $password = $_POST['password'];
+        $email = $_POST['email'];
+
+        $query = "INSERT INTO users (username, password, email) VALUES ('$username', '$password', '$email')";
+
+        if (mysqli_query($conn, $query)) {
+            echo "Data entry successful";
+        } else {
+            echo "Data entry unsuccessful: " . mysqli_error($conn);
+        }
+    }
+
+    // Closing the connection
+    mysqli_close($conn);
+?>
+
 <!DOCTYPE html>
 <head>
    <meta charset="UTF-8">
@@ -15,17 +36,17 @@
          <button class="close-btn" id="closeBtn">&times;</button>
          <!-- Register and Sign In forms here -->
          <div class="form-container sign-up-container">
-            <form action="#">
+            <form method="post" action="login.php">
                <h1>Create Account</h1>
                <div class="social-container">
                   <a href="#" class="social"><i class="fa-brands fa-facebook"></i></a>
                   <a href="#" class="social"><i class="fa-brands fa-google"></i></a>
                   </div>
                <span>or use your email for registration</span>
-               <input type="text" placeholder="Username" />
-               <input type="email" placeholder="Email" />
-               <input type="password" placeholder="Password" />
-               <button>Sign Up</button>
+               <input type="text" placeholder="Username" name ="username" />
+               <input type="email" placeholder="Email" name ="email" />
+               <input type="password" placeholder="Password" name ="password" />
+               <button type="submit" name="submit">Sign Up</button>
             </form>
          </div>
          <!-- Sign In -->
