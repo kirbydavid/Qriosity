@@ -1,47 +1,97 @@
-fetch('https://trackapi.nutritionix.com/v2/natural/nutrients', {
-    method: 'POST',
+// Define the USDA fetch function
+function fetchUSDAData(query) {
+  return fetch(`https://api.nal.usda.gov/fdc/v1/foods/search?query=${query}&api_key=fEFUuaodX1TRMM5G8nl59Knfkul2CTZhztMMsCNu`, {
+    method: 'GET',
     headers: {
-        'Content-Type': 'application/json',
-        'x-app-id': 'fec30a29',
-        'x-app-key': 'aeaf7777cd89a85c211ec24a12d84215' 
-    },
-    body: JSON.stringify({
-        "query": "banana"
-    })
-})
-.then(response => {
+      'Content-Type': 'application/json'
+    }
+  })
+  .then(response => {
     if (!response.ok) {
-        throw new Error('Network response was not ok');
+      throw new Error('Network response was not ok');
     }
     return response.json();
+  });
+}
+
+// Define the Nutritionix fetch function
+function fetchNutritionixData(query) {
+  return fetch('https://trackapi.nutritionix.com/v2/natural/nutrients', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-app-id': 'fec30a29',
+      'x-app-key': 'aeaf7777cd89a85c211ec24a12d84215' 
+    },
+    body: JSON.stringify({
+      "query": query
+    })
+  })
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not ok');
+    }
+    return response.json();
+  });
+}
+
+// Define the query variable
+const query = "banana";
+
+// Use Promise.all() to wait for both fetches to complete
+Promise.all([fetchUSDAData(query), fetchNutritionixData(query)])
+.then(([usdaData, nutritionixData]) => {
+  // Process the USDA data
+  const foodData = usdaData.foods[0]; // Assuming we're using the first food item
+  const foodNutrients = foodData.foodNutrients; // Get the foodNutrients array
+  const foodnumber = foodData.foodNutrients;
+
+  // Extract the required nutrient values
+  const totalFat = getNutrientValue(foodNutrients, 'Total lipid (fat)');
+  const saturatedFat = getNutrientValue(foodNutrients, 'Fatty acids, total saturated');
+  const transFat = getNutrientValue(foodNutrients, 'Fatty acids, total trans');
+  const polyunsaturatedFat = getNutrientValue(foodNutrients, 'Fatty acids, total polyunsaturated');
+  const monounsaturatedFat = getNutrientValue(foodNutrients, 'Fatty acids, total monounsaturated');
+  const cholesterol = getNutrientValue(foodNutrients, 'Cholesterol');
+  const sodium = getNutrientValue(foodNutrients, 'Sodium, Na');
+  const totalCarbohydrates = getNutrientValue(foodNutrients, 'Carbohydrate, by difference');
+  const dietaryFiber = getNutrientValue(foodNutrients, 'Fiber, total dietary');
+  const sugars = getNutrientValue(foodNutrients, 'Total Sugars');
+  const protein = getNutrientValue(foodNutrients, 'Protein');
+  const vitaminD = getNutrientValue(foodnumber, 328);
+  const calcium = getNutrientValue(foodNutrients, 'Calcium, Ca');
+  const iron = getNutrientValue(foodNutrients, 'Iron, Fe');
+  const potassium = getNutrientValue(foodNutrients, 'Potassium, K');
+  const caffeine = getNutrientValue(foodNutrients, 'Caffeine');
+
+ // Update the HTML elements with the extracted values
+  document.getElementById('calories').textContent = nutritionixData.foods[0].nf_calories;
+  document.getElementById('nf_total_fat').innerText = totalFat.value + ' ' + totalFat.unit;
+  document.getElementById('nf_saturated_fat').innerText = saturatedFat.value + ' ' + saturatedFat.unit;
+  document.getElementById('nf_trans_fat').innerText = transFat.value + ' ' + transFat.unit;
+  document.getElementById('nf_poly_fat').innerText = polyunsaturatedFat.value + ' ' + polyunsaturatedFat.unit;
+  document.getElementById('mf_mono_fat').innerText = monounsaturatedFat.value + ' ' + monounsaturatedFat.unit;
+  document.getElementById('nf_cholesterol').innerText = cholesterol.value + ' ' + cholesterol.unit;
+  document.getElementById('nf_sodium').innerText = sodium.value + ' ' + sodium.unit;
+  document.getElementById('nf_carbs').innerText = totalCarbohydrates.value + ' ' + totalCarbohydrates.unit;
+  document.getElementById('nf_fiber').innerText = dietaryFiber.value + ' ' + dietaryFiber.unit;
+  document.getElementById('nf_sugars').innerText = sugars.value + ' ' + sugars.unit;
+  document.getElementById('nf_protein').innerText = protein.value + ' ' + protein.unit;
+  document.getElementById('nf_vitamin_d').innerText = vitaminD.value + ' ' + vitaminD.unit;
+  document.getElementById('nf_calcium').innerText = calcium.value + ' ' + calcium.unit;
+  document.getElementById('nf_iron').innerText = iron.value + ' ' + iron.unit;
+  document.getElementById('nf_potassium').textContent = nutritionixData.foods[0].nf_potassium + ' MG';
+  document.getElementById('nf_caffeine').innerText = caffeine.value + ' ' + caffeine.unit;
 })
-.then(data => {
-    // Process the data and add it to your table
-    console.log(data); // Log the response for debugging
-
-    // Sample code to add data to the table (you'll need to adapt this)
-    const tableBody = document.getElementById('table-rows');
-    const row = tableBody.insertRow();
-
-    row.insertCell().textContent = data.foods[0].food_name;
-    row.insertCell().textContent = data.foods[0].brand_name;
-    row.insertCell().textContent = data.foods[0].serving_qty;
-    row.insertCell().textContent = data.foods[0].serving_unit;
-    row.insertCell().textContent = data.foods[0].serving_weight_grams;
-    row.insertCell().textContent = data.foods[0].nf_calories;
-    row.insertCell().textContent = data.foods[0].nf_total_fat;
-    row.insertCell().textContent = data.foods[0].nf_saturated_fat;
-    row.insertCell().textContent = data.foods[0].nf_cholesterol;
-    row.insertCell().textContent = data.foods[0].nf_sodium;
-    row.insertCell().textContent = data.foods[0].nf_total_carbohydrate;
-    row.insertCell().textContent = data.foods[0].nf_dietary_fiber;
-    row.insertCell().textContent = data.foods[0].nf_sugars;
-    row.insertCell().textContent = data.foods[0].nf_protein;
-    row.insertCell().textContent = data.foods[0].nf_potassium;
-    row.insertCell().textContent = data.foods[0].nf_p;
-
-})
-
 .catch(error => {
-    console.error('There has been a problem with your fetch operation:', error);
+  console.error('There has been a problem with your fetch operation:', error);
 });
+
+// Function to get the nutrient value from the foodNutrients array
+function getNutrientValue(foodNutrients, nutrientName) {
+  const nutrient = foodNutrients.find(n => n.nutrientName === nutrientName);
+  return {
+    value: nutrient ? nutrient.value : 'N/A',
+    unit: nutrient ? nutrient.unitName : ''
+  };
+}
