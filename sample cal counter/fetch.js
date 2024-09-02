@@ -61,7 +61,6 @@ Promise.all([fetchUSDAData(query), fetchNutritionixData(query)])
   const vitaminD = getNutrientValue(foodnumber, 328);
   const calcium = getNutrientValue(foodNutrients, 'Calcium, Ca');
   const iron = getNutrientValue(foodNutrients, 'Iron, Fe');
-  const potassium = getNutrientValue(foodNutrients, 'Potassium, K');
   const caffeine = getNutrientValue(foodNutrients, 'Caffeine');
 
  // Update the HTML elements with the extracted values
