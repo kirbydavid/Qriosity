@@ -23,3 +23,5 @@ window.addEventListener('click', function(event) {
 document.getElementById("CreateProduct").addEventListener("click", function() {
     window.location.href = "../QRForm/QRform.html"; // Replace with the actual path
   });
+
+  
