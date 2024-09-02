@@ -44,7 +44,6 @@ Promise.all([fetchUSDAData(query), fetchNutritionixData(query)])
   // Process the USDA data
   const foodData = usdaData.foods[0]; // Assuming we're using the first food item
   const foodNutrients = foodData.foodNutrients; // Get the foodNutrients array
-  const foodnumber = foodData.foodNutrients;
 
   // Extract the required nutrient values
   const totalFat = getNutrientValue(foodNutrients, 'Total lipid (fat)');
@@ -58,29 +57,29 @@ Promise.all([fetchUSDAData(query), fetchNutritionixData(query)])
   const dietaryFiber = getNutrientValue(foodNutrients, 'Fiber, total dietary');
   const sugars = getNutrientValue(foodNutrients, 'Total Sugars');
   const protein = getNutrientValue(foodNutrients, 'Protein');
-  const vitaminD = getNutrientValue(foodnumber, 328);
+  const vitaminD = getNutrientValue(foodNutrients, 'Vitamin D (D2 + D3), International Units');
   const calcium = getNutrientValue(foodNutrients, 'Calcium, Ca');
   const iron = getNutrientValue(foodNutrients, 'Iron, Fe');
   const caffeine = getNutrientValue(foodNutrients, 'Caffeine');
 
  // Update the HTML elements with the extracted values
-  document.getElementById('calories').textContent = nutritionixData.foods[0].nf_calories;
-  document.getElementById('nf_total_fat').innerText = totalFat.value + ' ' + totalFat.unit;
-  document.getElementById('nf_saturated_fat').innerText = saturatedFat.value + ' ' + saturatedFat.unit;
-  document.getElementById('nf_trans_fat').innerText = transFat.value + ' ' + transFat.unit;
-  document.getElementById('nf_poly_fat').innerText = polyunsaturatedFat.value + ' ' + polyunsaturatedFat.unit;
-  document.getElementById('mf_mono_fat').innerText = monounsaturatedFat.value + ' ' + monounsaturatedFat.unit;
-  document.getElementById('nf_cholesterol').innerText = cholesterol.value + ' ' + cholesterol.unit;
-  document.getElementById('nf_sodium').innerText = sodium.value + ' ' + sodium.unit;
-  document.getElementById('nf_carbs').innerText = totalCarbohydrates.value + ' ' + totalCarbohydrates.unit;
-  document.getElementById('nf_fiber').innerText = dietaryFiber.value + ' ' + dietaryFiber.unit;
-  document.getElementById('nf_sugars').innerText = sugars.value + ' ' + sugars.unit;
-  document.getElementById('nf_protein').innerText = protein.value + ' ' + protein.unit;
-  document.getElementById('nf_vitamin_d').innerText = vitaminD.value + ' ' + vitaminD.unit;
-  document.getElementById('nf_calcium').innerText = calcium.value + ' ' + calcium.unit;
-  document.getElementById('nf_iron').innerText = iron.value + ' ' + iron.unit;
-  document.getElementById('nf_potassium').textContent = nutritionixData.foods[0].nf_potassium + ' MG';
-  document.getElementById('nf_caffeine').innerText = caffeine.value + ' ' + caffeine.unit;
+ document.getElementById('calories').textContent = nutritionixData.foods[0].nf_calories;
+ document.getElementById('nf_total_fat').innerText = totalFat.value + ' ' + totalFat.unit;
+ document.getElementById('nf_saturated_fat').innerText = saturatedFat.value + ' ' + saturatedFat.unit;
+ document.getElementById('nf_trans_fat').innerText = transFat.value + ' ' + transFat.unit;
+ document.getElementById('nf_poly_fat').innerText = polyunsaturatedFat.value + ' ' + polyunsaturatedFat.unit;
+ document.getElementById('mf_mono_fat').innerText = monounsaturatedFat.value + ' ' + monounsaturatedFat.unit;
+ document.getElementById('nf_cholesterol').innerText = cholesterol.value + ' ' + cholesterol.unit;
+ document.getElementById('nf_sodium').innerText = sodium.value + ' ' + sodium.unit;
+ document.getElementById('nf_carbs').innerText = totalCarbohydrates.value + ' ' + totalCarbohydrates.unit;
+ document.getElementById('nf_fiber').innerText = dietaryFiber.value + ' ' + dietaryFiber.unit;
+ document.getElementById('nf_sugars').innerText = sugars.value + ' ' + sugars.unit;
+ document.getElementById('nf_protein').innerText = protein.value + ' ' + protein.unit;
+ document.getElementById('nf_vitamin_d').innerText = vitaminD.value === 'N/A' ? nutritionixData.foods[0].nf_vitamin_d + ' IU' : vitaminD.value + ' ' + vitaminD.unit; // check if vitaminD exists
+ document.getElementById('nf_calcium').innerText = calcium.value + ' ' + calcium.unit;
+ document.getElementById('nf_iron').innerText = iron.value + ' ' + iron.unit;
+ document.getElementById('nf_potassium').textContent = nutritionixData.foods[0].nf_potassium + ' MG';
+ document.getElementById('nf_caffeine').innerText = caffeine.value === 'N/A' ? nutritionixData.foods[0].nf_caffeine + ' MG' : caffeine.value + ' ' + caffeine.unit; // check if caffeine exists
 })
 .catch(error => {
   console.error('There has been a problem with your fetch operation:', error);
