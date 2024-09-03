@@ -36,7 +36,7 @@ function fetchNutritionixData(query) {
 }
 
 // Define the query variable
-const query = "banana";
+const query = "beer";
 
 // Use Promise.all() to wait for both fetches to complete
 Promise.all([fetchUSDAData(query), fetchNutritionixData(query)])
@@ -57,10 +57,11 @@ Promise.all([fetchUSDAData(query), fetchNutritionixData(query)])
   const dietaryFiber = getNutrientValue(foodNutrients, 'Fiber, total dietary');
   const sugars = getNutrientValue(foodNutrients, 'Total Sugars');
   const protein = getNutrientValue(foodNutrients, 'Protein');
-  const vitaminD = getNutrientValue(foodNutrients, 'Vitamin D (D2 + D3), International Units');
+  const vitaminD = getNutrientValueById(foodNutrients, 1114);
   const calcium = getNutrientValue(foodNutrients, 'Calcium, Ca');
   const iron = getNutrientValue(foodNutrients, 'Iron, Fe');
-  const caffeine = getNutrientValue(foodNutrients, 'Caffeine');
+  const potassium = getNutrientValue(foodNutrients, 'Potassium, K');
+  const caffeine = getNutrientValueById(foodNutrients, 1057);
 
  // Update the HTML elements with the extracted values
  document.getElementById('calories').textContent = nutritionixData.foods[0].nf_calories;
@@ -75,19 +76,54 @@ Promise.all([fetchUSDAData(query), fetchNutritionixData(query)])
  document.getElementById('nf_fiber').innerText = dietaryFiber.value + ' ' + dietaryFiber.unit;
  document.getElementById('nf_sugars').innerText = sugars.value + ' ' + sugars.unit;
  document.getElementById('nf_protein').innerText = protein.value + ' ' + protein.unit;
- document.getElementById('nf_vitamin_d').innerText = vitaminD.value === 'N/A' ? nutritionixData.foods[0].nf_vitamin_d + ' IU' : vitaminD.value + ' ' + vitaminD.unit; // check if vitaminD exists
+ document.getElementById('nf_vitamin_d').innerText = vitaminD.value === 'N/A' ? nutritionixData.foods[0].nf_vitamin_d + ' MCG' : vitaminD.value + ' ' + vitaminD.unit; // check if vitaminD exists
  document.getElementById('nf_calcium').innerText = calcium.value + ' ' + calcium.unit;
  document.getElementById('nf_iron').innerText = iron.value + ' ' + iron.unit;
  document.getElementById('nf_potassium').textContent = nutritionixData.foods[0].nf_potassium + ' MG';
  document.getElementById('nf_caffeine').innerText = caffeine.value === 'N/A' ? nutritionixData.foods[0].nf_caffeine + ' MG' : caffeine.value + ' ' + caffeine.unit; // check if caffeine exists
+
+  // Calculate the daily value percentage for each nutrient
+  const dailyValues = {
+    totalFat: (totalFat.value / 78) * 100,
+    saturatedFat: (saturatedFat.value / 20) * 100,
+    cholesterol: (cholesterol.value / 300) * 100,
+    sodium: (sodium.value / 2400) * 100,
+    totalCarbohydrates: (totalCarbohydrates.value / 300) * 100,
+    dietaryFiber: (dietaryFiber.value / 28) * 100,
+    vitaminD: (vitaminD.value / 15) * 100,
+    calcium: (calcium.value / 1000) * 100,
+    iron: (iron.value / 18) * 100,
+    potassium: (parseFloat(nutritionixData.foods[0].nf_potassium) / 4700) * 100,
+  };
+
+  // Update the HTML elements with the daily value percentages
+  document.getElementById('total-fat-dv').innerText = dailyValues.totalFat.toFixed(0) + '%';
+  document.getElementById('saturated-fat-dv').innerText = dailyValues.saturatedFat.toFixed(0) + '%';
+  document.getElementById('cholesterol-dv').innerText = dailyValues.cholesterol.toFixed(0) + '%';
+  document.getElementById('sodium-dv').innerText = dailyValues.sodium.toFixed(0) + '%';
+  document.getElementById('carbs-dv').innerText = dailyValues.totalCarbohydrates.toFixed(0) + '%';
+  document.getElementById('fiber-dv').innerText = dailyValues.dietaryFiber.toFixed(0) + '%';
+  document.getElementById('vitamin-d-dv').innerText = dailyValues.vitaminD.toFixed(0) + '%';
+  document.getElementById('calcium-dv').innerText = dailyValues.calcium.toFixed(0) + '%';
+  document.getElementById('iron-dv').innerText = dailyValues.iron.toFixed(0) + '%';
+  document.getElementById('potassium-dv').innerText = dailyValues.potassium.toFixed(0) + '%';
 })
 .catch(error => {
   console.error('There has been a problem with your fetch operation:', error);
 });
 
-// Function to get the nutrient value from the foodNutrients array
+// Function to get the nutrient value from the foodNutrients array by name
 function getNutrientValue(foodNutrients, nutrientName) {
   const nutrient = foodNutrients.find(n => n.nutrientName === nutrientName);
+  return {
+    value: nutrient ? nutrient.value : 'N/A',
+    unit: nutrient ? nutrient.unitName : ''
+  };
+}
+
+// Function to get the nutrient value from the foodNutrients array by ID
+function getNutrientValueById(foodNutrients, nutrientId) {
+  const nutrient = foodNutrients.find(n => n.nutrientId === nutrientId);
   return {
     value: nutrient ? nutrient.value : 'N/A',
     unit: nutrient ? nutrient.unitName : ''
